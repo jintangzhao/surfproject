@@ -90,24 +90,30 @@
             // Simulate search (replace with backend logic)
             storeList.innerHTML = '';
 
-            if (searchValue.trim()) {
-                // Simulated empty search result
-                const stores = [];
+            if (!searchValue.trim()) {
+                const emptyMessage = document.createElement('div');
+                emptyMessage.className = 'store-item';
+                emptyMessage.style.color = 'red';
+                emptyMessage.textContent = 'Please enter a store name.';
+                storeList.appendChild(emptyMessage);
+                return;
+            }
 
-                if (stores.length === 0) {
-                    const noStoreMessage = document.createElement('div');
-                    noStoreMessage.className = 'store-item';
-                    noStoreMessage.style.color = 'red';
-                    noStoreMessage.textContent = 'Store not found. Please create a new store.';
-                    storeList.appendChild(noStoreMessage);
-                } else {
-                    stores.forEach(store => {
-                        const storeItem = document.createElement('div');
-                        storeItem.className = 'store-item';
-                        storeItem.textContent = store;
-                        storeList.appendChild(storeItem);
-                    });
-                }
+            const stores = [];
+
+            if (stores.length === 0) {
+                const noStoreMessage = document.createElement('div');
+                noStoreMessage.className = 'store-item';
+                noStoreMessage.style.color = 'red';
+                noStoreMessage.textContent = 'Store not found. Please create a new store.';
+                storeList.appendChild(noStoreMessage);
+            } else {
+                stores.forEach(store => {
+                    const storeItem = document.createElement('div');
+                    storeItem.className = 'store-item';
+                    storeItem.textContent = store;
+                    storeList.appendChild(storeItem);
+                });
             }
         });
 
@@ -115,6 +121,7 @@
             const newStoreName = prompt('Enter the new store name:');
             if (newStoreName) {
                 alert(`New store "${newStoreName}" created!`);
+                window.location.href = "C:/Users/axelm/Desktop/Marketek/menu.html";
             }
         });
     </script>
