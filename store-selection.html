@@ -67,6 +67,9 @@
         .store-item:hover {
             background-color: #f0f0f0;
         }
+        .form-container {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -75,14 +78,21 @@
         <input type="text" id="storeSearch" placeholder="Search for a store..." />
         <div>
             <button id="searchBtn">Search</button>
-            <button id="createBtn" class="create">Create New Store</button>
         </div>
         <div class="store-list" id="storeList">
             <!-- Dynamic store list will appear here -->
         </div>
+        <div class="form-container">
+            <h2>Create a New Store</h2>
+            <form id="createStoreForm">
+                <input type="text" id="newStoreName" placeholder="Enter new store name" required />
+                <button type="submit" class="create">Create Store</button>
+            </form>
+        </div>
     </div>
     <script>
         const storeList = document.getElementById('storeList');
+        const createStoreForm = document.getElementById('createStoreForm');
 
         document.getElementById('searchBtn').addEventListener('click', () => {
             const searchValue = document.getElementById('storeSearch').value;
@@ -117,12 +127,12 @@
             }
         });
 
-        document.getElementById('createBtn').addEventListener('click', () => {
-            const newStoreName = prompt('Enter the new store name:');
-            if (newStoreName) {
-                alert(`New store "${newStoreName}" created!`);
-                window.location.href = "C:/Users/axelm/Desktop/Marketek/menu.html";
-            }
+        createStoreForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const newStoreName = document.getElementById('newStoreName').value;
+            alert(`New store "${newStoreName}" created!`);
+            window.location.href = "C:/Users/axelm/Desktop/Marketek/menu.html";
         });
     </script>
 </body>
